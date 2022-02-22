@@ -1,6 +1,10 @@
+document.getElementById("error-message").style.display = "none";
 const searchFood = () => {
   const searchField = document.getElementById("search-field");
   const searchText = searchField.value;
+  //   clear data
+  searchField.value = "";
+  document.getElementById("error-message").style.display = "none";
   if (searchText == "") {
     const noResultContainer = document.getElementById("no-result");
     const h1 = document.createElement("h1");
@@ -8,15 +12,17 @@ const searchFood = () => {
     noResultContainer.appendChild(h1);
     return;
   } else {
-    document.getElementById("no-result").style.display = "none";
-    //   clear data
-    searchField.value = "";
     // load data
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`;
     fetch(url)
       .then((res) => res.json())
-      .then((data) => displaySearchResult(data.meals));
+      .then((data) => displaySearchResult(data.meals))
+      .catch((error) => displayError(error));
   }
+};
+
+const displayError = (error) => {
+  document.getElementById("error-message").style.display = "block";
 };
 
 const displaySearchResult = (meals) => {

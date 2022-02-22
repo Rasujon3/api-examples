@@ -9,12 +9,15 @@ loadCountries();
 const displayCountries = (countries) => {
   const countriesDiv = document.getElementById("countries");
   for (const country of countries) {
+    const div = document.createElement("div");
+    div.classList.add("country");
     const h3 = document.createElement("h3");
     h3.innerText = country.name.common;
-    countriesDiv.appendChild(h3);
+    div.appendChild(h3);
 
     const p = document.createElement("p");
     p.innerText = country.capital;
-    countriesDiv.appendChild(p);
+    div.appendChild(p);
+    countriesDiv.appendChild(div);
   }
 };

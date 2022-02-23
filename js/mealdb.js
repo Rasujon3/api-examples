@@ -6,10 +6,11 @@ const searchFood = () => {
   searchField.value = "";
   document.getElementById("error-message").style.display = "none";
   if (searchText == "") {
-    const noResultContainer = document.getElementById("no-result");
+    /* const noResultContainer = document.getElementById("no-result");
     const h1 = document.createElement("h1");
     h1.innerText = "Search field can't be empty";
-    noResultContainer.appendChild(h1);
+    noResultContainer.appendChild(h1); */
+    displayError();
     return;
   } else {
     // load data
@@ -26,7 +27,6 @@ const displayError = (error) => {
 };
 
 const displaySearchResult = (meals) => {
-  console.log(typeof meals);
   console.log(meals.length);
   const searchResult = document.getElementById("search-result");
   searchResult.textContent = "";
